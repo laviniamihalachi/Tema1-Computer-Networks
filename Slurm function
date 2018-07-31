@@ -9,3 +9,16 @@ slurm_make_time_str - convert time_t to formatted string for user output ///src/
  * IN size - length of string buffer, we recommend a size of 32 bytes to
  *	easily support different site-specific formats
  */
+ 
+ 
+ 
+ job_req_node_filter - job reqeust node filter.///src/slurmctld/node_scheduler.c
+ 
+   *	clear from a bitmap the nodes which can not be used for a job
+   *	test memory size, required features, processor count, etc.
+   * NOTE: Does not support exclusive OR of features.
+   *	It just matches first element of XOR and ignores count.
+   * IN job_ptr - pointer to node to be scheduled
+   * IN/OUT bitmap - set of nodes being considered for use
+   * RET SLURM_SUCCESS or EINVAL if can't filter (exclusive OR of features)
+   */
